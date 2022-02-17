@@ -133,9 +133,10 @@ Z::PointTS CausticFunction::calculateResonator() const
     return Z::PointTS();
 }
 
-Z::PointTS CausticFunction::calculateAt(double argSI)
+Z::PointTS CausticFunction::calculateAt(const Z::Value &arg)
 {
-    auto elem = Z::Utils::asRange(arg()->element);
+    double argSI = arg.toSi();
+    auto elem = Z::Utils::asRange(this->arg()->element);
     double x = qMin(qMax(argSI, 0.0), elem->axisLengthSI());
     auto calcBeamParams = _schema->isResonator()
             ? &CausticFunction::calculateResonator
@@ -155,6 +156,20 @@ QString CausticFunction::modeAlias(Mode mode)
         return QStringLiteral("R");
     case CausticFunction::Mode::HalfAngle:
         return QStringLiteral("V");
+    }
+    return QString();
+}
+
+QString CausticFunction::modeDisplayName(Mode mode)
+{
+    switch (mode)
+    {
+    case CausticFunction::Mode::BeamRadius:
+        return qApp->tr("Beam radius");
+    case CausticFunction::Mode::FrontRadius:
+        return qApp->tr("Wavefront curvature radius");
+    case CausticFunction::Mode::HalfAngle:
+        return qApp->tr("Half of divergence angle");
     }
     return QString();
 }

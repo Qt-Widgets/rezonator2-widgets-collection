@@ -1,5 +1,6 @@
 #include "CausticWindow.h"
 
+#include "BeamShapeExtension.h"
 #include "CausticOptionsPanel.h"
 #include "../AppSettings.h"
 #include "../CustomPrefs.h"
@@ -7,13 +8,18 @@
 #include "../funcs/FunctionGraph.h"
 #include "../io/CommonUtils.h"
 #include "../io/JsonUtils.h"
-#include "../widgets/BeamShapeWidget.h"
 #include "../widgets/ElemSelectorWidget.h"
 #include "../widgets/VariableRangeEditor.h"
 #include "helpers/OriWidgets.h"
 #include "helpers/OriLayouts.h"
 
-#include "qcpl_plot.h"
+#include <QAction>
+#include <QGroupBox>
+#include <QLabel>
+#include <QMenu>
+#include <QToolBar>
+
+#include <qcpl_plot.h>
 
 //------------------------------------------------------------------------------
 //                           CausticParamsDlg
@@ -104,21 +110,20 @@ void CausticParamsDlg::guessRange()
 
 CausticWindow::CausticWindow(Schema *schema) : PlotFuncWindowStorable(new CausticFunction(schema))
 {
-    _actnShowBeamShape = new QAction(tr("Show Beam Shape", "Plot action"), this);
-    _actnShowBeamShape->setIcon(QIcon(":/toolbar/profile"));
-    _actnShowBeamShape->setCheckable(true);
-    _actnShowBeamShape->setVisible(false);
-    connect(_actnShowBeamShape, &QAction::triggered, this, &CausticWindow::showBeamShape);
+    _beamShape = new BeamShapeExtension(this);
 
-    menuPlot->addSeparator();
-    menuPlot->addAction(_actnShowBeamShape);
+    _plot->addTextVarY(QStringLiteral("{func_mode}"), tr("Function mode"), [this]{
+        return CausticFunction::modeDisplayName(function()->mode()); });
 
-    toolbar()->addSeparator();
-    toolbar()->addAction(_actnShowBeamShape);
+    _plot->addTextVarX(QStringLiteral("{elem}"), tr("Element label and title"), [this]{
+        return function()->arg()->element->displayLabelTitle(); });
+    _plot->addTextVarX(QStringLiteral("{elem_label}"), tr("Element label"), [this]{
+        return function()->arg()->element->label(); });
+    _plot->addTextVarX(QStringLiteral("{elem_title}"), tr("Element title"), [this]{
+        return function()->arg()->element->title(); });
 
-    connect(_plot, &QCPL::Plot::resized, [this](const QSize&, const QSize&){
-        if (_beamShape) _beamShape->parentSizeChanged();
-    });
+    _plot->setDefaultTitleX(QStringLiteral("{elem} {(unit)}"));
+    _plot->setDefaultTitleY(QStringLiteral("{func_mode} {(unit)}"));
 }
 
 bool CausticWindow::configureInternal()
@@ -148,42 +153,19 @@ QString CausticWindow::writeFunction(QJsonObject& root)
     return QString();
 }
 
-QString CausticWindow::getDefaultTitle() const
+void CausticWindow::storeView(FuncMode mode)
 {
-    switch (function()->mode())
-    {
-    case CausticFunction::Mode::BeamRadius:
-        return tr("Beam Radius");
-    case CausticFunction::Mode::FrontRadius:
-        return tr("Wavefront Curvature Radius");
-    case CausticFunction::Mode::HalfAngle:
-        return tr("Half of Divergence Angle");
-    }
-    return QString();
+    ViewSettings vs;
+    storeViewParts(vs, VP_LIMITS_Y | VP_TITLE_Y | VP_UNIT_Y | VP_CUSRSOR_POS);
+    _storedView[mode] = vs;
 }
 
-QString CausticWindow::getDefaultTitleX() const
+void CausticWindow::restoreView(FuncMode mode)
 {
-    auto elem = function()->arg()->element;
-    return QStringLiteral("%1 (%2)").arg(elem->displayLabelTitle(), getUnitX()->name());
-}
-
-QString CausticWindow::getDefaultTitleY() const
-{
-    QString title;
-    switch (function()->mode())
-    {
-    case CausticFunction::Mode::BeamRadius:
-        title = tr("Beam radius");
-        break;
-    case CausticFunction::Mode::FrontRadius:
-        title = tr("Wavefront curvature radius");
-        break;
-    case CausticFunction::Mode::HalfAngle:
-        title = tr("Half of divergence angle");
-        break;
-    }
-    return QStringLiteral("%1 (%2)").arg(title, getUnitY()->name());
+    ViewSettings vs;
+    if (_storedView.contains(mode))
+        vs = _storedView[mode];
+    restoreViewParts(vs, VP_LIMITS_Y | VP_TITLE_Y | VP_UNIT_Y | VP_CUSRSOR_POS);
 }
 
 Z::Unit CausticWindow::getDefaultUnitX() const
@@ -207,24 +189,10 @@ QString CausticWindow::getCursorInfo(const QPointF& pos) const
     if (!function()->ok()) return QString();
     double x = getUnitX()->toSi(pos.x());
     auto res = function()->calculateAt(x);
+    _beamShape->setShape(res);
     auto unitY = getUnitY();
-    return QString("%1t = %2; %1s = %3")
-            .arg(CausticFunction::modeAlias(function()->mode()))
-            .arg(Z::format(unitY->fromSi(res.T)))
-            .arg(Z::format(unitY->fromSi(res.S)));
-}
-
-void CausticWindow::showBeamShape()
-{
-    if (_beamShape)
-    {
-        _beamShapeGeom = _beamShape->geometry();
-        _beamShape->deleteLater();
-        _beamShape = nullptr;
-    }
-    else
-    {
-        _beamShape = new BeamShapeWidget(_plot);
-        _beamShape->setInitialGeometry(_beamShapeGeom);
-    }
+    return QString("%1t = %2; %1s = %3").arg(
+                CausticFunction::modeAlias(function()->mode()),
+                Z::format(unitY->fromSi(res.T)),
+                Z::format(unitY->fromSi(res.S)));
 }

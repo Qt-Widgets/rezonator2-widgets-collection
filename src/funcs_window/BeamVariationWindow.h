@@ -5,6 +5,7 @@
 #include "../RezonatorDialog.h"
 #include "../funcs/BeamVariationFunction.h"
 
+class BeamShapeExtension;
 class ElemAndParamSelector;
 class ElemOffsetSelectorWidget;
 class GeneralRangeEditor;
@@ -23,9 +24,6 @@ public:
 protected:
     // Implementation of PlotFuncWindow
     bool configureInternal() override;
-    QString getDefaultTitle() const override;
-    QString getDefaultTitleX() const override;
-    QString getDefaultTitleY() const override;
     Z::Unit getDefaultUnitX() const override;
     Z::Unit getDefaultUnitY() const override;
     QString getCursorInfo(const QPointF& pos) const override;
@@ -33,6 +31,9 @@ protected:
     // Implementation of PlotFuncWindowStorable
     QString readFunction(const QJsonObject& root) override;
     QString writeFunction(QJsonObject& root) override;
+
+private:
+    BeamShapeExtension* _beamShape;
 };
 
 

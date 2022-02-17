@@ -5,7 +5,6 @@
 #include "../funcs/FunctionGraph.h"
 #include "../funcs/PlotFuncRoundTripFunction.h"
 #include "../io/JsonUtils.h"
-#include "../widgets/BeamShapeWidget.h"
 
 #include "qcpl_cursor.h"
 #include "qcpl_plot.h"
@@ -14,26 +13,34 @@ MulticausticWindow::MulticausticWindow(MultirangeCausticFunction* function) : Pl
 {
     _plot->addLayer("elem_bounds", _plot->layer("graphs"), QCustomPlot::limBelow);
 
+    _plot->addTextVarX(QStringLiteral("{elems}"), tr("Element labels and titles"), [this]{
+        QStringList strs;
+        foreach (const auto& arg, this->function()->args())
+            if (!arg.element->disabled())
+                strs << arg.element->displayLabelTitle();
+        return strs.join(QStringLiteral(", "));
+    });
+    _plot->addTextVarX(QStringLiteral("{elem_labels}"), tr("Element labels"), [this]{
+        QStringList strs;
+        foreach (const auto& arg, this->function()->args())
+            if (!arg.element->disabled())
+                strs << arg.element->displayLabel();
+        return strs.join(QStringLiteral(", "));
+    });
+    _plot->addTextVarX(QStringLiteral("{elem_titles}"), tr("Element titles"), [this]{
+        QStringList strs;
+        foreach (const auto& arg, this->function()->args())
+            if (!arg.element->disabled())
+                strs << arg.element->displayTitle();
+        return strs.join(QStringLiteral(", "));
+    });
+    _plot->setDefaultTitleX(QStringLiteral("{elem_labels} {(unit)}"));
+    _plot->setFormatterTextX(QStringLiteral("{elem_labels} {(unit)}"));
+
     _actnElemBoundMarkers = new QAction(tr("Element bound markers"), this);
     _actnElemBoundMarkers->setCheckable(true);
     _actnElemBoundMarkers->setChecked(true);
     connect(_actnElemBoundMarkers, &QAction::toggled, this, &MulticausticWindow::toggleElementBoundMarkers);
-
-    _actnShowBeamShape = new QAction(tr("Show Beam Shape", "Plot action"), this);
-    _actnShowBeamShape->setIcon(QIcon(":/toolbar/profile"));
-    _actnShowBeamShape->setCheckable(true);
-    _actnShowBeamShape->setVisible(false); // TODO
-    connect(_actnShowBeamShape, &QAction::triggered, this, &MulticausticWindow::showBeamShape);
-
-    menuPlot->addSeparator();
-    menuPlot->addAction(_actnShowBeamShape);
-
-    toolbar()->addSeparator();
-    toolbar()->addAction(_actnShowBeamShape);
-
-    connect(_plot, &QCPL::Plot::resized, [this](const QSize&, const QSize&){
-        if (_beamShape) _beamShape->parentSizeChanged();
-    });
 }
 
 bool MulticausticWindow::configureInternal()
@@ -241,15 +248,6 @@ void MulticausticWindow::showRoundTrip()
     }
 }
 
-QString MulticausticWindow::getDefaultTitleX() const
-{
-    QStringList strs;
-    foreach (auto& arg, function()->args())
-        if (!arg.element->disabled())
-            strs << arg.element->displayLabel();
-    return QStringLiteral("%1 (%2)").arg(strs.join(QStringLiteral(", ")), getUnitX()->name());
-}
-
 Z::Unit MulticausticWindow::getDefaultUnitX() const
 {
     const auto& funcs = function()->funcs();
@@ -267,17 +265,17 @@ Z::Unit MulticausticWindow::getDefaultUnitY() const
     return Z::Units::none();
 }
 
-void MulticausticWindow::showBeamShape()
+void MulticausticWindow::storeView(FuncMode mode)
 {
-    if (_beamShape)
-    {
-        _beamShapeGeom = _beamShape->geometry();
-        _beamShape->deleteLater();
-        _beamShape = nullptr;
-    }
-    else
-    {
-        _beamShape = new BeamShapeWidget(_plot);
-        _beamShape->setInitialGeometry(_beamShapeGeom);
-    }
+    ViewSettings vs;
+    storeViewParts(vs, VP_LIMITS_Y | VP_TITLE_Y | VP_UNIT_Y | VP_CUSRSOR_POS);
+    _storedView[mode] = vs;
+}
+
+void MulticausticWindow::restoreView(FuncMode mode)
+{
+    ViewSettings vs;
+    if (_storedView.contains(mode))
+        vs = _storedView[mode];
+    restoreViewParts(vs, VP_LIMITS_Y | VP_TITLE_Y | VP_UNIT_Y | VP_CUSRSOR_POS);
 }
