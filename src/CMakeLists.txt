@@ -1,0 +1,87 @@
+add_subdirectory(core)
+add_subdirectory(funcs)
+add_subdirectory(funcs_window)
+add_subdirectory(io)
+add_subdirectory(tests)
+add_subdirectory(widgets)
+
+set(SOURCE
+    ${SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/AdjustmentWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Appearance.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/AppSettings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/AppSettingsDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CalcManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CalculatorWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CharMapWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CommonData.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomElemsManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomElemsWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomPrefs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementPropsDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementsCatalogDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElemFormulaWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/GaussCalculatorWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/GrinLensWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/HelpSystem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MdiListDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MemoWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MessageBus.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProjectOperations.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProjectWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProtocolWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpParamsDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/RezonatorDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaConfigDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaParamsWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaPropsDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaViewWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaWindows.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StartWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/TextEditDialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/WindowsManager.cpp
+    PARENT_SCOPE
+)
+
+set(HEADERS
+    ${HEADERS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/AdjustmentWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Appearance.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/AppSettings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/AppSettingsDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CalcManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CalculatorWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CharMapWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CommonData.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomElemsManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomElemsWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CustomPrefs.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementPropsDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementsCatalogDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElemFormulaWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/GaussCalculatorWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/GrinLensWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/HelpSystem.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MdiListDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MemoWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MessageBus.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Project.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProjectOperations.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProjectWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ProtocolWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpParamsDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/RezonatorDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaConfigDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaParamsWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaPropsDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaViewWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaWindows.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/StartWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/TextEditDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/WindowsManager.h
+    PARENT_SCOPE
+)

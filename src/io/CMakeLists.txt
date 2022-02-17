@@ -1,0 +1,22 @@
+set(SOURCE
+   ${SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Clipboard.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CommonUtils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ISchemaWindowStorable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/JsonUtils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaReaderIni.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaReaderJson.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaWriterJson.cpp
+    PARENT_SCOPE
+)
+set(HEADERS
+   ${HEADERS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Clipboard.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CommonUtils.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ISchemaWindowStorable.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/JsonUtils.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaReaderIni.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaReaderJson.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SchemaWriterJson.h
+    PARENT_SCOPE
+)

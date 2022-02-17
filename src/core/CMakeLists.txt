@@ -1,0 +1,49 @@
+set(SOURCE
+   ${SOURCE}
+   ${CMAKE_CURRENT_SOURCE_DIR}/Beam.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/CommonTypes.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Element.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ElementFilter.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ElementFormula.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Elements.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ElementsCatalog.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Format.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Formula.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/LuaHelper.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Math.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Parameters.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Protocol.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Pump.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Report.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Schema.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Units.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Utils.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Values.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/Variable.cpp
+   PARENT_SCOPE
+)
+
+set(HEADERS
+   ${HEADERS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Beam.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CommonTypes.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Element.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementFilter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementFormula.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Elements.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ElementsCatalog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Format.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Formula.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/LuaHelper.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Math.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Parameters.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Protocol.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Pump.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Report.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Schema.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Units.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Utils.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Values.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Variable.h
+    PARENT_SCOPE
+)

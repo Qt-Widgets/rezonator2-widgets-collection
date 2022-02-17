@@ -1,0 +1,48 @@
+set(SOURCE
+   ${SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/AbcdBeamCalculator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamParamsAtElemsFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamVariationFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CausticFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FormatInfo.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionBase.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionGraph.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionUtils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/GaussCalculator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/GrinCalculator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/InfoFunctions.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultibeamCausticFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultirangeCausticFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncRoundTripFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpCalculator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/RoundTripCalculator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMap2DFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMapFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/TableFunction.cpp
+    PARENT_SCOPE
+)
+set(HEADERS
+   ${HEADERS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/AbcdBeamCalculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamParamsAtElemsFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamVariationFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CausticFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FormatInfo.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionBase.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionGraph.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FunctionUtils.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/GaussCalculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/GrinCalculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/InfoFunctions.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultibeamCausticFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultirangeCausticFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncRoundTripFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PumpCalculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/RoundTripCalculator.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMap2DFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMapFunction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/TableFunction.h
+    PARENT_SCOPE
+)

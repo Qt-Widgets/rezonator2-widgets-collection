@@ -1,0 +1,39 @@
+set(SOURCE
+   ${SOURCE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamShapeExtension.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamVariationWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CausticWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FuncOptionsPanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/FuncWindowHelpers.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/InfoFuncWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultibeamCausticWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultiCausticParamsDlg.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MulticausticWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultirangeCausticWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncWindowStorable.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMap2DWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMapWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/TableFuncWindow.cpp
+    PARENT_SCOPE
+)
+set(HEADERS
+   ${HEADERS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamShapeExtension.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/BeamVariationWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CausticOptionsPanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/CausticWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FuncOptionsPanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FuncWindowHelpers.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/InfoFuncWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultibeamCausticWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultiCausticParamsDlg.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MulticausticWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/MultirangeCausticWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/PlotFuncWindowStorable.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMap2DWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/StabilityMapWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/TableFuncWindow.h
+    PARENT_SCOPE
+)
